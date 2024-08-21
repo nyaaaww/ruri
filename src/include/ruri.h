@@ -175,10 +175,12 @@ void build_caplist(cap_value_t caplist[], bool privileged, cap_value_t drop_capl
 struct MAGIC *get_magic(const char *cross_arch);
 void run_unshare_container(struct CONTAINER *container);
 char *container_info_to_k2v(const struct CONTAINER *container);
+char *calculate_file_sha256(const char *file_path);
 void run_chroot_container(struct CONTAINER *container);
 void run_rootless_container(struct CONTAINER *container);
 void run_rootless_chroot_container(struct CONTAINER *container);
 int trymount(const char *source, const char *target, unsigned int mountflags);
+int install(const char *pod_name, const char *pod_ver,const char *pod_arch);
 void umount_container(const char *container_dir);
 void read_config(struct CONTAINER *container, const char *path);
 void set_limit(const struct CONTAINER *container);

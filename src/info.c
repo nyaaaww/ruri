@@ -97,6 +97,7 @@ void show_helps(void)
 	cprintf("{base}  -s, --enable-seccomp ........................: Enable built-in Seccomp profile\n");
 	cprintf("{base}  -p, --privileged ............................: Run privileged container\n");
 	cprintf("{base}  -r, --rootless ..............................: Run rootless container (WIP)\n");
+	cprintf("{base}  -do,--download [name] [version] [arch] ......: Download rootfs.\n")
 	cprintf("{base}  -k, --keep [cap] ............................: Keep the specified capability\n");
 	cprintf("{base}  -d, --drop [cap] ............................: Drop the specified capability\n");
 	cprintf("{base}  -e, --env [env] [value] .....................: Set environment variables to its value (**)\n");

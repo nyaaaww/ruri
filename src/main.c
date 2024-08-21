@@ -202,6 +202,13 @@ static void parse_args(int argc, char **argv, struct CONTAINER *container)
 		if (strcmp(argv[index], "-D") == 0 || strcmp(argv[index], "--dump-config") == 0) {
 			dump_config = true;
 		}
+
+		else if (strcmp(argv[index], "-do") == 0 || strcmp(    argv[index], "--download") == 0) {
+			install(argv[2],argv[3],argv[4]);
+			exit(EXIT_SUCCESS);
+		}
+
+
 		// Output file.
 		else if (strcmp(argv[index], "-o") == 0 || strcmp(argv[index], "--output") == 0) {
 			index++;
