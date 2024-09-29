@@ -3,6 +3,7 @@
 int check_proot()
 {
 	if (execute_command("proot >/dev/null 2>&1") == 127) {
+	error("{red}You have not install proot.{clear}\n")
 		return -1;
 	}
 	return 0;
