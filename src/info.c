@@ -96,6 +96,7 @@ void show_helps(void)
 	cprintf("{base}  -N, --no-rurienv ............................: Do not use .rurienv file\n");
 	cprintf("{base}  -s, --enable-seccomp ........................: Enable built-in Seccomp profile\n");
 	cprintf("{base}  -p, --privileged ............................: Run privileged container\n");
+	cprintf("{base}  -pr,--proot [dir] ...........................: Use proot to run container\n");
 	cprintf("{base}  -r, --rootless ..............................: Run rootless container (WIP)\n");
 	cprintf("{base}  -do,--download [name] [version] [arch] ......: Download rootfs.\n")
 	cprintf("{base}  -k, --keep [cap] ............................: Keep the specified capability\n");
