@@ -46,7 +46,7 @@ static void check_container(const struct CONTAINER *container)
 		error("{red}Error: `/` is not allowed to use as a container directory QwQ\n");
 	}
 	// Check if we are running with root privileges.
-	if (getuid() != 0 && !(container->rootless)) {
+	if (getuid() != 0 && !(container->rootless) && !(container->proot)) {
 		error("{red}Error: this program should be run with root privileges QwQ\n");
 	}
 	// Check if container directory exists.
@@ -116,6 +116,7 @@ static void parse_args(int argc, char **argv, struct CONTAINER *container)
 	container->no_warnings = false;
 	container->enable_unshare = false;
 	container->rootless = false;
+	container->proot = false;
 	container->mount_host_runtime = false;
 	container->command[0] = NULL;
 	container->env[0] = NULL;
@@ -203,11 +204,15 @@ static void parse_args(int argc, char **argv, struct CONTAINER *container)
 			dump_config = true;
 		}
 
-		else if (strcmp(argv[index], "-do") == 0 || strcmp(    argv[index], "--download") == 0) {
-			install(argv[2],argv[3],argv[4]);
+		else if (strcmp(argv[index], "-do") == 0 || strcmp(argv[index], "--download") == 0) {
+			install(argv[2], argv[3], argv[4]);
 			exit(EXIT_SUCCESS);
+		} else if (strcmp(argv[index], "-pr") == 0 || strcmp(argv[index], "--proot") == 0) {
+			// init_proot(argv[2]);
+			
+		//	exit(EXIT_SUCCESS);
+    container->proot = true;
 		}
-
 
 		// Output file.
 		else if (strcmp(argv[index], "-o") == 0 || strcmp(argv[index], "--output") == 0) {
@@ -456,7 +461,9 @@ int main(int argc, char **argv)
 		run_unshare_container(container);
 	} else if ((container->rootless)) {
 		run_rootless_container(container);
-	} else {
+	}else if ((container->proot)){
+	    run_proot_container(container->container_dir);
+	}else {
 		run_chroot_container(container);
 	}
 	return 0;

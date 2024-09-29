@@ -16,6 +16,7 @@
  */
 
 #include "include/ruri.h"
+#include "include/down.h"
 
 #include <fcntl.h>
 #include <netdb.h>
@@ -282,9 +283,7 @@ int install(const char *pod_name, const char *pod_ver, const char *pod_arch)
 	}
 
 	char *htm_file = "./default";
-	char *sha_file = "./SHA256SUMS";
-
-	const char *sou_link = "https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/";
+	char *sha_file = "./SHA256SUMS";	
 	char def_link[PATH_MAX] = { 0 }, tok_file[PATH_MAX] = { 0 };
 	snprintf(def_link, strlen(sou_link) + strlen(pod_name) + strlen(pod_ver) + strlen(pod_arch) + 12, "%s%s/%s/%s/default/", sou_link, pod_name, pod_ver, pod_arch);
 	const char *home = getenv("HOME");
@@ -310,7 +309,7 @@ int install(const char *pod_name, const char *pod_ver, const char *pod_arch)
 	if (downloader(pod_sha, sha_file) < 0) {
 		return -1;
 	}
-	if (check_sha256(rfs_n) == -1) {
+	if (check_sha256(rfs_n) == -1||check_sha256(rfs_n) == 0) {
 		return -1;
 	}
 

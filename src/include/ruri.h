@@ -116,6 +116,8 @@ struct __attribute__((aligned(128))) CONTAINER {
 	bool enable_unshare;
 	// Useless rootless container support.
 	bool rootless;
+	// Use proot
+	bool proot;
 	// Mount host runtime.
 	bool mount_host_runtime;
 	// Container pid for setns(2).
@@ -178,9 +180,11 @@ char *container_info_to_k2v(const struct CONTAINER *container);
 char *calculate_file_sha256(const char *file_path);
 void run_chroot_container(struct CONTAINER *container);
 void run_rootless_container(struct CONTAINER *container);
+void run_proot_container(const char *container_dir);
 void run_rootless_chroot_container(struct CONTAINER *container);
 int trymount(const char *source, const char *target, unsigned int mountflags);
 int install(const char *pod_name, const char *pod_ver,const char *pod_arch);
+int execute_command(const char *cmd);
 void umount_container(const char *container_dir);
 void read_config(struct CONTAINER *container, const char *path);
 void set_limit(const struct CONTAINER *container);
