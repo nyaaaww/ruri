@@ -40,7 +40,7 @@ jobs:
           sudo apt install -y \
               make \
               clang gcc-12 libx32gcc-12-dev lib32gcc-12-dev libgcc-12-dev-x32-cross\
-              libseccomp-dev libseccomp-dev:i386\
+              libseccomp-dev libssl-dev libseccomp-dev:i386\
               libcap-dev libcap-dev:i386\
               libc6-dev libc6-dev:i386 libc6:i386\
               binutils
