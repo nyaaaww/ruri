@@ -12,6 +12,7 @@ int check_proot()
 void run_proot_container(const char *container_dir)
 {
 	if (check_proot()== -1){goto EXIT;}
+	if(strlen(container_dir)*2 >1024){error("{red}PATH too long!\n{clear}");}
 	execute_command("unset LD_PRELOAD");
 	char proot_cmd[2048] = { 0 };
 	strncat(proot_cmd, "proot", 5);
