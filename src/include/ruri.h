@@ -81,6 +81,11 @@
 #define false ((_Bool) + 0u)
 #endif
 #endif
+
+//Get libcrypto version.
+#include <openssl/opensslv.h>
+#include <openssl/crypto.h>
+
 // For initializing some variables.
 #define INIT_VALUE (-114)
 // Limitations.
